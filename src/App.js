@@ -4,10 +4,12 @@ import './App.css';
 
 function App() {
   const [query, setQuery] = useState('');
+  const [weather, setWeather] = useState({});
   const search = async (e) => {
     if (e.key === 'Enter') {
       const data = await fetchWeather(query)
-      console.log(data)
+      setWeather(data);
+      setQuery('');
     }
   }
 
@@ -15,14 +17,21 @@ function App() {
 
   return (
     <div className='main-container'>
-      <input
-        type="text"
-        className="search"
-        placeholder="Search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        onKeyPress={search}
+      <input type="text" className="search" placeholder="Search" value={query} onChange={(e) => setQuery(e.target.value)} onKeyPress={search}
       />
+
+      {weather.main && (
+        <div className='city'>
+          <h2 className='city-name'>
+            <span>{weather.name}</span>
+            <span>{weather.sys.country}</span>
+          </h2>
+          <div className="city-temp">
+            {Math.round(weather.main.temp)}
+            <sup>&deg;C</sup>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
