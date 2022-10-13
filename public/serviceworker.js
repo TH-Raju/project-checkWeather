@@ -4,11 +4,12 @@ const self = this;
 
 // Install Sw
 self.addEventListener('install', (event) => {
-    event.waitUntil(CACHE_NAME)
-        .then((cache) => {
-            console.log('Opened cache');
-            return cache.addAll(urlsToCache);
-        })
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then((cache) => {
+                console.log('Opened cache');
+                return cache.addAll(urlsToCache);
+            }))
 });
 // Listhen for requests
 self.addEventListener('fetch', (event) => {
