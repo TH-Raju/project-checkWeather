@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [query, setQuery] = useState('');
   return (
     <div className='main-container'>
-      <h1>Let's Start</h1>
+      <input
+        type="text"
+        className="search"
+        placeholder="Search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
     </div>
   );
 }
