@@ -23,8 +23,8 @@ function App() {
       {weather.main && (
         <div className='city'>
           <h2 className='city-name'>
-            <span>{weather.name}</span>
-            <span>{weather.sys.country}</span>
+            <span>{weather.name} </span>
+            <sup> {weather.sys.country}</sup>
           </h2>
           <div className="city-temp">
             {Math.round(weather.main.temp)}
